@@ -1,10 +1,18 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native"
+import { View, Text, TextInput, TouchableOpacity, FlatList } from "react-native"
 import { styles } from "./styles"
+
+import { Participant } from '../../components/Participant'
 
 export function Home() {
 
+    const participants = ["Fabiano", "João", "Maria", "José", "Ana", "Pedro", "Paulo", "Lucas", "Marcos", "Mateus"]
+
     function handleParticipantAdd() {
         console.log('Adicionar participante')
+    }
+
+    function handleParticipantRemove(name: string) {
+        console.log(`Remover participante ${name}`)
     }
 
     return (
@@ -25,6 +33,18 @@ export function Home() {
                     <Text style={styles.buttonText}>+</Text>
                 </TouchableOpacity>
             </View>
+
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                data={participants}
+                keyExtractor={item => item}
+                renderItem={({ item }) => (
+                    <Participant
+                        name={item}
+                        onRemove={() => handleParticipantRemove(item)}
+                    />
+                )}
+            />
         </View>
     )
 }
