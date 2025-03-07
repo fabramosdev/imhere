@@ -9,9 +9,6 @@ export function Home() {
 	const [participants, setParticipants] = useState<string[]>([])
 	const [participantName, setParticipantName] = useState<string>('')
 
-
-	// const participants: string[] = []
-
 	function handleParticipantAdd() {
 		if (participants.includes(participantName)) {
 			return Alert.alert(`Ops...já cadastrado`, `Já temos um participante ${participantName} cadastrado!`)
@@ -24,9 +21,7 @@ export function Home() {
 		Alert.alert('Remover participante', `Deseja remover o participante ${name}?`, [
 			{
 				text: 'Sim',
-				onPress: () => {
-					Alert.alert('Participante removido', `O participante ${name} foi removido com sucesso`)
-				}
+				onPress: () => setParticipants(prevState => prevState.filter(participant => participant !== name))
 			},
 			{
 				text: 'Não',
