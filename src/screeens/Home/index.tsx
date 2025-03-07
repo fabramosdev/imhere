@@ -13,6 +13,9 @@ export function Home() {
 		if (participants.includes(participantName)) {
 			return Alert.alert(`Ops...já cadastrado`, `Já temos um participante ${participantName} cadastrado!`)
 		}
+		if (participantName === '') {
+			return Alert.alert(`Ops...sem nome`, `Por favor, informe o nome do participante!`)
+		}
 		setParticipants(prevState => [...prevState, participantName])
 		setParticipantName('')
 	}
