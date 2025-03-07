@@ -11,7 +11,10 @@ export function Home() {
 
 	function handleParticipantAdd() {
 		if (participants.includes(participantName)) {
-			return Alert.alert(`Ops...já cadastrado`, `Já temos um participante ${participantName} cadastrado!`)
+			return [
+				Alert.alert(`Ops...já cadastrado`, `Já temos um participante ${participantName} cadastrado!`),
+				setTimeout(() => setParticipantName(''), 1000)
+			]
 		}
 		if (participantName === '') {
 			return Alert.alert(`Ops...sem nome`, `Por favor, informe o nome do participante!`)
